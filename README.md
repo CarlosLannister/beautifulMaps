@@ -25,5 +25,5 @@ python createMapRoads.py
 ## createWaterMap.py 
 
 ```
-python createMapRoads.py 
+python createWaterMap.py 
 ```
