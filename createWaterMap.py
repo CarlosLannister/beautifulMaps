@@ -11,7 +11,7 @@ G2 = ox.graph_from_place(places, retain_all=True, simplify = False,custom_filter
 Gwater = nx.compose(G1, G2)
 '''
 
-point = (40.4381311, -3.8196194)
+point = (40.4122958, -3.6986878)
 G1 = ox.graph_from_point(center_point, dist=15000, dist_type='bbox', network_type='all', 
                         simplify=True, retain_all=True, truncate_by_edge=False, clean_periphery=False, custom_filter='["natural"~"water"]')
 G2 = ox.graph_from_point(center_point, dist=15000, dist_type='bbox', network_type='all', 

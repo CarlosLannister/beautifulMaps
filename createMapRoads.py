@@ -9,7 +9,7 @@ places = ["Madrid, Spain"]
 G = ox.graph_from_place(places,  retain_all=True, simplify = True, network_type='all')
 '''
 
-point = (40.4381311, -3.8196194)
+point = (40.4122958, -3.6986878)
 G = ox.graph_from_point(point, dist=10000, retain_all=True, simplify = True, network_type='all')
 
 u = []
@@ -63,9 +63,9 @@ longitude = -3.8196194
 bgcolor = "#061529"
 
 fig, ax = ox.plot_graph(G, node_size=0,figsize=(27, 40), 
-                        dpi = 300, save = False, edge_color=roadColors,
+                        dpi = 300,bgcolor = bgcolor,
+                        save = False, edge_color=roadColors,
                         edge_linewidth=roadWidths, edge_alpha=1)
-
 
 '''
 # Bbox sides
