@@ -1,6 +1,13 @@
 # beautifulMaps
+Scripts for building maps using OSMnx.
 
-Scripts
+<p align="center">
+<img src="https://github.com/CarlosLannister/beautifulMaps/blob/main/examples/roadMap.png"
+     alt="Madrid street map"
+      width="600"/>
+</p>
+
+  
 ## Installation 
 
 ```
