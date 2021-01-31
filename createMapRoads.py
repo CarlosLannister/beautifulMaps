@@ -1,32 +1,16 @@
-# To make maps
-import networkx as nx
 import osmnx as ox
-import requests
-import matplotlib 
-import matplotlib.cm as cm
-import matplotlib.colors as colors
-from matplotlib.lines import Line2D
-
-from PIL import Image, ImageOps, ImageColor, ImageFont, ImageDraw 
-
 
 # Define city/cities
-places = ["Madrid, Spain"]
-# Center of map
-latitude = 40.4381311
-longitude = -3.8196194
-
-# Bbox sides
-north = latitude + 0.15
-south = latitude - 0.15
-east = longitude + 0.5
-west = longitude - 0.4
-
-bgcolor = "#061529"
 
 # Get data for places
 
+'''
+places = ["Madrid, Spain"]
 G = ox.graph_from_place(places,  retain_all=True, simplify = True, network_type='all')
+'''
+
+point = (40.4381311, -3.8196194)
+G = ox.graph_from_point(point, dist=10000, retain_all=True, simplify = True, network_type='all')
 
 u = []
 v = []
@@ -37,6 +21,7 @@ for uu, vv, kkey, ddata in G.edges(keys=True, data=True):
     v.append(vv)
     key.append(kkey)
     data.append(ddata)    
+
 # List to store colors
 roadColors = []
 roadWidths = []
@@ -68,23 +53,33 @@ for item in data:
     roadColors.append(color)
     roadWidths.append(linewidth)
             
-# List to store linewidths
+
+# Center of map
+latitude = 40.4381311
+longitude = -3.8196194
+
+
+
+bgcolor = "#061529"
+
+fig, ax = ox.plot_graph(G, node_size=0,figsize=(27, 40), 
+                        dpi = 300, save = False, edge_color=roadColors,
+                        edge_linewidth=roadWidths, edge_alpha=1)
+
 
 '''
-for item in data:
-    if "footway" in item["highway"]:
-        linewidth = 0.25
-    else:
-        linewidth = 0.5
-        
-    roadWidths.append(linewidth)
-'''
+# Bbox sides
+north = latitude + 0.15
+south = latitude - 0.15
+east = longitude + 0.15
+west = longitude - 0.15
 
-# Make Map 
-fig, ax = ox.plot_graph(G, node_size=0,figsize=(27, 40), bbox = (north, south, east, west),
+fig, ax = ox.plot_graph(G, node_size=0, bbox = (north, south, east, west),
                         dpi = 300,bgcolor = bgcolor,
                         save = False, edge_color=roadColors,
                         edge_linewidth=roadWidths, edge_alpha=1)
 
+'''
+
 fig.tight_layout(pad=0)
-fig.savefig("alcalaRoads.png", dpi=300, bbox_inches='tight', format="png", facecolor=fig.get_facecolor(), transparent=False)
+fig.savefig("roadMap.png", dpi=300, bbox_inches='tight', format="png", facecolor=fig.get_facecolor(), transparent=False)
